@@ -11,6 +11,7 @@ function startGame () {
 
   for (var i = 0; i < boardChildren.length; i++) {
     addListeners(boardChildren[i]);
+    addCellToBoard(boardChildren[i]);
   }
 
   function addListeners(elem) {
@@ -34,6 +35,16 @@ function getCol(ele) {
       return (parseInt(classNames[i].split("col-").join("")));
       }
     }
+  }
+
+  function addCellToBoard (ele) {
+    var newCell = {};
+    newCell.row = getRow(ele);
+    newCell.col = getCol(ele);
+    newCell.isMine = ele.classList.contains("mine");
+
+    board.cells.push(newCell);
+
   }
 
   function showCell (evt) {
