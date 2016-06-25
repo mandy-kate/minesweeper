@@ -1,28 +1,23 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
+function startGame () {
+  var boardChildren = document.getElementsByClassName('board')[0].children;
 
-function startGame ()  {
-    var children = document.getElementsByClassName('board')[0].children
-    console.log(children)
-    addListeners(children)
-    }
+  for (var i = 0; i < boardChildren.length; i++) {
+    addListeners(boardChildren[i]);
+  }
 
-function addListeners (element) {
-    for (var i = 0; i < element.length; i++) {
-    element[i].addEventListener('click', showCell);
-    element[i].addEventListener('contextmenu', markCell);
-    }
+  function addListeners(elem) {
+  elem.addEventListener('click', showCell);
+  elem.addEventListener('contextmenu', markCell);
+  }
+
+  function showCell (evt) {
+    event.target.classList.toggle('hidden');
+  }
+
+  function markCell (evt) {
+    event.preventDefault();
+    event.target.classList.toggle('marked');
+  }
 }
-
-function showCell (evt) {
-    evt.target.classList.remove('hidden');
-    }
-
- function markCell (evt) {
-
-    evt.preventDefault();
-
-    evt.target.classList.toggle('marked');
-}
-
-startGame()
