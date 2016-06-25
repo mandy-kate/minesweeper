@@ -65,9 +65,37 @@ function countSurroundingMines(cell) {
   return count;
 }
 
+function checkForWin(cell) {
+  var mines = document.getElementsByClassName('board')[0].children;
+  var maxMines = 0;
+  for (var i = 0; i < board.cells.length; i++) {
+    if (board.cells[i].isMine && board.cells[i].isMarked){
+      maxMines++;
+    }
+    else if (!board.cells[i].isMine && board.cells[i].isMarked){
+      maxMines++;
+    }
+
+  }
+
+  if (maxMines === 5) {
+
+    for (var j = 0; j < mines.length; j++) {
+      if (mines[j].classList.contains('hidden')){
+        return;
+      }
+      alert("You won the game!!");
+      return restart();
+    }
+  }
+
+}
+
   function showCell (evt) {
     event.target.classList.toggle('hidden');
   }
+
+  checkForWin()
 
   function markCell (evt) {
     event.preventDefault();
@@ -81,4 +109,5 @@ function countSurroundingMines(cell) {
     }
   }
 }
+checkForWin()
 }
