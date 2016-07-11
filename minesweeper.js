@@ -108,18 +108,15 @@ function showAllMines() {
 function showCell(event) {
 
   var targetEvent = event.target.classList;
-  var audio = document.getElementsByTagName("audio");
 
   if(targetEvent.contains("mine")){
     showAllMines();
-    audio[0].play();
     alert("You lose!!");
     return restart();
   }
   else {
     targetEvent.remove('hidden');
     showSurrounding(event.target);
-    checkForWin(audio);
   }
 }
 
